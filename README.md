@@ -28,11 +28,11 @@ Class balance: 509 with disease (55%) and 411 without (45%)
 Sex balance: 726 male (79%) and 194 female (21%)
 
 ## Pipeline
-1. Exploration, baseline and improved models
+### 1. Exploration, baseline and improved models
 
 Exploration. Missing values, target distribution, disease status by sex, and age distribution by disease status.
 
-Baseline model.
+### Baseline model.
 
 Drop every row with a missing value (920 rows down to 299, 32.5% retained).
 One-hot encode the categorical features (fbs and exang mapped directly to 0/1).
@@ -41,7 +41,7 @@ Train a default Random Forest.
 
 Dropping rows also shifted the sex balance from 79/21 to 68/32, so deletion biases the sample towards the hospitals with more complete records.
 
-Improved model.
+### Improved model.
 
 Impute missing values: median for numeric columns (age, trestbps, chol, thalch, oldpeak, ca) and mode for fbs, restecg, exang, slope and thal.
 Keep all 920 patients and encode to 21 features.
@@ -51,14 +51,14 @@ Train a default Random Forest, and plot feature importances.
 
 The top features were chol, thalch (maximum heart rate), oldpeak (ST depression) and age.
 
-2. Cross-validation and hyperparameter tuning
+### 2. Cross-validation and hyperparameter tuning
 Cross-validation: 5-fold StratifiedKFold on the training set only. The test set is left untouched until final evaluation.
 
-3. Feature reduction (PCA)
+### 3. Feature reduction (PCA)
 PCA was fitted on the scaled training set to keep at least 90% of the variance.
 14 components were needed, down from 21 features.
 The Random Forest was retrained on the components using the best parameters from the tuning stage, so the comparison isolates the effect of feature reduction.
-4. Model comparison and reflection
+### 4. Model comparison and reflection
 
 All four models are compared on the same metrics, with a bar chart of test accuracy and confusion matrices for each stage.
 
