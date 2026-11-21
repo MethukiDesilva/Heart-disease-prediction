@@ -62,27 +62,26 @@ The Random Forest was retrained on the components using the best parameters from
 
 All four models are compared on the same metrics, with a bar chart of test accuracy and confusion matrices for each stage.
 
-. Model comparison and reflection
+## Model Comparison and Reflection
 
-All four models are compared on the same metrics, with a bar chart of test accuracy and confusion matrices for each stage.
+All four models were evaluated using the same performance metrics. Their test-set accuracy was compared using a bar chart, while confusion matrices were generated to examine classification performance at each stage.
 
-Results
+### Test-Set Performance
 
-Test-set performance
+| Model | Accuracy | Precision | Recall | Specificity | F1-Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| Baseline (Raw, Rows Dropped) | 0.8167 | 0.7931 | 0.8214 | 0.8125 | 0.8070 | 0.8795 |
+| Improved (Imputed and Scaled) | 0.8533 | 0.8378 | 0.9118 | 0.7805 | 0.8732 | 0.9214 |
+| Tuned (GridSearchCV) | 0.8696 | 0.8421 | 0.9412 | 0.7805 | 0.8889 | 0.9320 |
+| PCA-Reduced | **0.8859** | **0.8584** | **0.9510** | **0.8049** | **0.9023** | **0.9442** |
 
-Model	Accuracy	Precision	Recall	Specificity	F1	ROC-AUC
-Baseline (raw, rows dropped)	0.8167	0.7931	0.8214	0.8125	0.8070	0.8795
-Improved (imputed and scaled)	0.8533	0.8378	0.9118	0.7805	0.8732	0.9214
-Tuned (GridSearchCV)	0.8696	0.8421	0.9412	0.7805	0.8889	0.9320
-PCA-reduced	0.8859	0.8584	0.9510	0.8049	0.9023	0.9442
+### 5-Fold Cross-Validation (Training Set)
 
-5-fold cross-validation (training set)
-
-Model	Mean CV accuracy	Std. dev.
-Improved (default parameters)	0.8017	0.0297
-Tuned	0.8207	0.0340
-PCA-reduced	0.8125	0.0229
-
+| Model | Mean CV Accuracy | Standard Deviation |
+|---|---:|---:|
+| Improved (Default Parameters) | 0.8017 | 0.0297 |
+| Tuned (GridSearchCV) | 0.8207 | 0.0340 |
+| PCA-Reduced | 0.8125 | 0.0229 |
 ## Key findings
 Best test score: the PCA-reduced model has the highest test accuracy (0.886), F1 (0.902) and ROC-AUC (0.944).
 Best CV score: the tuned model has a slightly higher cross-validation accuracy (0.821 against 0.813), so the tuned and PCA models are closely matched.
